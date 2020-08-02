@@ -106,9 +106,9 @@ public class UmengApplication extends io.flutter.app.FlutterApplication {
         // pushAgent.setNotificationPlayVibrate(MsgConstant.NOTIFICATION_PLAY_SDK_DISABLE);
         UmengMessageHandler messageHandler = new UmengMessageHandler() {
             @Override
-            public void dealWithCustomMessage(final Context context, final UMessage uMessage) {
+            public void dealWithCustomMessage(final Context context, UMessage uMessage) {
                 Log.d(TAG, "uMessage: " + uMessage.toString());
-				String umengPushMsg = formatMsg(uMessage);
+				final String umengPushMsg = formatMsg(uMessage);
                 Toast.makeText(context, uMessage.custom, Toast.LENGTH_LONG).show();
                 uiThreadHandler.post(new Runnable() {
                     @Override
@@ -141,8 +141,8 @@ public class UmengApplication extends io.flutter.app.FlutterApplication {
                 super.openActivity(context, uMessage);
             }
 
-            public void dealWithCustomAction(Context context, final UMessage uMessage) {
-                String umengPushMsg = formatMsg(uMessage);
+            public void dealWithCustomAction(Context context, UMessage uMessage) {
+                final String umengPushMsg = formatMsg(uMessage);
                 Log.i(TAG, "umengPushMsg: " + umengPushMsg);
                 uiThreadHandler.post(new Runnable() {
                     @Override
